@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .container {
+            margin: 30px;
+            padding: 26px;
+            background-color: rgb(222, 245, 248);
+            border: rgb(255, 200, 196) 5px solid;
+            border-radius: 10px;
+        }
+
+        .top {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .title {
+            border-bottom: 2px solid rgb(22, 19, 19);
+            /* width: 20%; */
+            font-size: 25px;
+            padding: 5px;
+        }
+
+        .top .logout {
+            right: 30px;
+            margin-right: 20px;
+            position: absolute;
+            padding: 5px;
+            border: rgb(3, 3, 3) 2px solid;
+            width: 5%;
+            font-size: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        .logout :hover {
+            background-color: red;
+            color: whitesmoke;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-top: 50px;
+
+        }
+
+        ul li {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        #nav-link {
+            border: rgb(2, 0, 46) 2px solid;
+            margin-left: 900px;
+            padding: 5px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        #head {
+            border: rgb(2, 0, 46) 2px solid;
+            padding: 5px;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+
+        #a1 {
+
+            border: rgb(2, 0, 46) 2px solid;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        #abc {
+
+            border: rgb(2, 0, 46) 2px solid;
+            padding: 5px;
+            border-radius: 10px;
+            margin-top: 10px;
+            background-color: whitesmoke;
+            width: 200px;
+        }
+
+        .send {
+            margin: 10px auto;
+            border: rgb(0, 0, 0) 2px solid;
+            padding: 5px;
+            font-size: 30px;
+            border-radius: 10px;
+            width: 80%;
+            justify-content: center;
+        }
+
+        .upload {
+            background-color: rgb(247, 197, 197);
+            width: 500px;
+            margin-top: 10px;
+            border: rgb(0, 0, 0) 2px solid;
+            padding: 5px;
+            font-size: 30px;
+            border-radius: 10px;
+            margin-left: 350px;
+        }
+
+        th {
+            border: solid 1px black
+        }
+
+        td {
+            padding: 5px;
+            margin: 10px;
+            border-spacing: 0px;
+            background-color: rgb(228, 204, 204);
+            border: solid 1px black
+        }
+
+        .row {
+            border-radius: 6px;
+            width: 100%;
+            display: flex;
+            margin: 10px;
+        }
+
+        .col1 {
+            background-color: rgb(245, 200, 200);
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: auto;
+            border-right: 1px solid rgb(243, 243, 243);
+            margin-right: 5px;
+            border-radius: 15px;
+
+        }
+
+        .col2 {
+            background-color: rgb(245, 200, 200);
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: auto;
+            border-left: 1px solid #000;
+            border-radius: 15px;
+
+        }
+
+        input {
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: 10px 3px;
+        }
+
+        select {
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+        }
+
+        .as {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .as1 {
+            /* border: 2px solid red; */
+            display: flex;
+        }
+
+        .as1 .col3 {
+            margin: 10px 65px;
+            padding: 18px;
+            /* border: 2px solid rgb(11, 94, 0); */
+        }
+
+        .send .h5 {
+            margin: 10px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="top">
+            <div class="logout">
+                <a href="{% url 'LOGOUT2' %}">
+                    Logout
+                </a>
+            </div>
+            <div class="title">welcome {{key.name}}</div>
+        </div>
+
+        <div class="send">
+
+            <form method="POST">
+                {% csrf_token %}
+                <h5 class="h5">Upload your Bank-statement here file here</h5>
+                <div class="as">
+                    <input type="file" name="file" placeholder="uplaod your file here" required="required" multiple
+                        accept=".pdf">
+                    <input type="submit" value='upload' name="upload">
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="as1">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="col3">
+                        <!-- <h5>Upload seller Invoice file here</h5> -->
+                        <h5 class="h5">Seller Invoice</h5>
+                        <input type="file" name="file" placeholder="uplaod your file here" required="required" multiple
+                            accept=".jpg">
+                        <input type="submit" value='upload' name="upload">
+                    </div>
+                </form>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="col3">
+                        <!-- <h5>Upload Purchase Invoice file here</h5> -->
+                        <h5 class="h5">Purchase Invoice</h5>
+                        <input type="file" name="file" placeholder="uplaod your file here" required="required" multiple
+                            accept=".jpg">
+                        <input type="submit" value='upload' name="upload">
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <div class="upload">
+            <form method="POST">
+                {% csrf_token %}
+                <h5>send your file </h5>
+                <ul>
+                    <li>
+                        <div class="form-group">
+                            <input type="email" name="reciever_email" class="form-control custom-form"
+                                placeholder="enter reciever email id" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <select required name='ofile'>
+                            {% for i in files %}
+                            {% if i.files %}
+                            <option required value={{i.files}}>{{i.files}}</option>>
+                            {% endif %}
+                            {% endfor%}
+                        </select>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <input type="submit" value='send' name="send">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </li>
+                </ul>
+
+            </form>
+        </div>
+
+        <!-- <div id='main'>
+            <div id='first'>
+                <table>
+
+                    <th>Recieved files</th>
+                    <th>Recieved From</th>
+
+                    {% for i in person %}
+                    <tr>
+                        {% if i.recieved_from != key.email and i.recieved_from != '' %}
+                        <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                        <td>{{i.recieved_from}} </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+
+            <div id="second">
+                <table>
+
+                    <th>My Files</th>
+
+                    {% for i in files %}
+                    <tr>
+                        <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col1">
+                <table>
+
+                    <th>My Files</th>
+
+                    {% for i in files %}
+                    <tr>
+                        <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+            <div class="col2">
+                <table>
+
+                    <th>Recieved files</th>
+                    <th>Recieved From</th>
+
+                    {% for i in person %}
+                    <tr>
+                        {% if i.recieved_from != key.email and i.recieved_from != '' %}
+                        <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                        <td>{{i.recieved_from}} </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
