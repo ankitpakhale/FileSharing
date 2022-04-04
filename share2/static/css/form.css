@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.form-control {
+    padding: 15px;
+}
+.form-control label{
+    display: block;
+}
+
+input[type],
+textarea {
+    border: none;
+    background-color: black;
+    padding: 10px;
+    border-radius: 2rem;
+}
+
+input[type]:focus,
+textarea:focus {
+    border: none;
+    outline: none;
+}

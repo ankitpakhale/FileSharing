@@ -1,0 +1,547 @@
+<!--Starter Template-->
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- <link  rel='stylesheet'  href="{% static 'css/feedback.css' %}"> -->
+    <!-- <link  rel='stylesheet'  href="{% static 'css/form.css' %}"> -->
+    <!-- <link  rel='stylesheet'  href="{% static 'css/loading.css' %}"> -->
+    <!-- <link  rel='stylesheet'  href="{% static 'css/signup.css' %}"> -->
+    <link rel='stylesheet' type="text/css" href="{% static 'css/style.css' %}">
+    <!-- <link  rel='stylesheet'  href="{% static 'css/table.css' %}"> -->
+    <!-- <link  rel='stylesheet'  href="{% static 'css/upload.css' %}">     -->
+
+    <!-- <title>cSegmentation - Heaven for Programmers</title> -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .container {
+            margin-left: 115px;
+            text-align: center;
+            /* margin: 30px; */
+            padding: 26px;
+            background-color: rgb(248, 250, 250);
+            border: rgb(20, 16, 16) 1px solid;
+            border-radius: 10px;
+            box-shadow: 1px 1px 1px white ;
+        }
+
+        .top {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .title {
+            border-bottom: 2px solid rgb(22, 19, 19);
+            /* width: 20%; */
+            font-size: 25px;
+            padding: 5px;
+        }
+
+        .top .logout {
+            right: 30px;
+            margin-right: 20px;
+            position: absolute;
+            padding: 5px;
+            border: rgb(3, 3, 3) 2px solid;
+            width: 5%;
+            font-size: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        .logout :hover {
+            background-color: red;
+            color: whitesmoke;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-top: 50px;
+
+        }
+
+        ul li {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        #nav-link {
+            border: rgb(2, 0, 46) 2px solid;
+            margin-left: 900px;
+            padding: 5px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        #head {
+            border: rgb(2, 0, 46) 2px solid;
+            padding: 5px;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+
+        #a1 {
+
+            border: rgb(2, 0, 46) 2px solid;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        #abc {
+
+            border: rgb(2, 0, 46) 2px solid;
+            padding: 5px;
+            border-radius: 10px;
+            margin-top: 10px;
+            background-color: whitesmoke;
+            width: 200px;
+        }
+
+        .send {
+            margin: 10px auto;
+            border: rgb(248, 247, 247) 2px solid;
+            padding: 5px;
+            font-size: 30px;
+            border-radius: 10px;
+            width: 80%;
+            justify-content: center;
+        }
+
+        .upload {
+            background-color: rgb(216, 215, 215);
+            width: 500px;
+            margin-top: -20px;
+
+            box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+            padding: 5px;
+            font-size: 30px;
+            border-radius: 7px;
+            margin-left: 300px;
+        }
+
+        th {
+            padding: 5px;
+            border: solid 2px rgb(252, 248, 248)
+        }
+
+        td {
+            padding: 5px;
+            margin: 10px;
+            border-spacing: 0px;
+            /* background-color: rgb(229, 226, 226); */
+            border: solid 1px rgb(240, 236, 236)
+        }
+
+        .row {
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            margin-top: 20px;
+            box-shadow: None;
+            background-color:#F8FAFA;
+        }
+
+        .col1 {
+            background-color: rgb(212, 211, 211);
+            float: left;
+            width: 45%;
+            padding: 10px;
+            height: auto;
+            margin-left: 10px;
+            
+            margin-right: 15px;
+            border-radius: 7px;
+            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+            
+        }
+        
+        .col2 {
+            margin-right: 10px;
+            margin-left: 15px;
+            background-color: rgb(219, 217, 217);
+            float: left;
+            width: 45%;
+            padding: 10px;
+            height: auto;
+            border-left: 1px solid #000;
+            border-radius: 7px;
+            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+        }
+
+        input {
+            height: fit-content;
+            border: 2px solid rgb(250, 249, 249);
+            border-radius: 5px;
+            margin: 10px 3px;
+        }
+
+        select {
+            font-size: small;
+            border: 2px solid rgb(250, 249, 249);
+            border-radius: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+        }
+
+        .as {
+            margin-top: 10px;
+            text-align: center;
+            margin-left: 350px;
+            background-color: rgb(223, 223, 223);
+            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+            width: fit-content;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .as1 {
+            /* border: 2px solid red; */
+            display: flex;
+        }
+
+        .as1 .col3 {
+            background-color: rgb(207, 204, 204);
+            box-shadow: 1px 2px 1px white;
+            border: 1px solid white;
+            border-radius: 8px;
+            margin: 10px 65px;
+            padding: 18px;
+            /* border: 2px solid rgb(11, 94, 0); */
+        }
+
+        .send .h5 {
+            margin: 10px auto;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--Navbar which we select from the components in Bootstrap-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">cSegmentation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
+                    </li>
+                    {% if key %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'DASHBOARD2' %}">Dashboard</a>
+                    </li>
+                    {% endif%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+
+
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Topics
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Technology</a></li>
+                            <li><a class="dropdown-item" href="#">Web Development</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Support</a></li>
+                            <li><a class="dropdown-item" href="#">Write for us</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div class="mx-2">
+
+                    <button class="btn btn-danger">
+                        welcome
+                            {{key.name}}
+                        </button>
+
+                    <a href="{% url 'LOGOUT2' %}"><button class="btn btn-danger">
+                            LOGOUT
+                        </button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--Carousel which we select from the components in Bootstrap-->
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/Image1.jpg' %}" class="d-block w-100" alt="..." style="height:700px">
+                <div class="carousel-caption d-none d-md-block">
+                    <!-- <h2>Welcome to cSegmentation</h2> -->
+                    <!-- <p>Technology news, Development and Trends</p> -->
+                    <!-- <button class="btn btn-primary">Technology</button> -->
+                    <!-- <button class="btn btn-danger">Web Development</button> -->
+                    <!-- <button class="btn btn-success">Tech Fun</button> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/Image3.jpg' %}" class="d-block w-100" alt="..." style="height:700px">
+                <div class="carousel-caption d-none d-md-block">
+
+                    <!-- <p>Customer Segmentation</p> -->
+                    <!-- <button class="btn btn-primary">Technology</button> -->
+                    <!-- <button class="btn btn-danger">Web Development</button> -->
+                    <!-- <button class="btn btn-success">Tech Fun</button> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/Image2.jpg' %}" class="d-block w-100" alt="..." style="height:700px">
+                <div class="carousel-caption d-none d-md-block">
+                    <!-- <p>Technology news, Development and Trends</p> -->
+                    <!-- <button class="btn btn-primary">Technology</button> -->
+                    <!-- <button class="btn btn-danger">Web Development</button> -->
+                    <!-- <button class="btn btn-success">Tech Fun</button> -->
+
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!--Template in which we select Large Template-->
+
+
+    <div class="container my-4">
+        <!-- <div class="row mb-2"> -->
+            <!-- <div class="col-md-6"> -->
+                <!-- <div -->
+                <!-- class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"> -->
+                <div class="col p-4 d-flex flex-column position-static">
+                    <h3 class="mb-0" >File-Sharing</h3>
+                    <strong class="d-inline-block mb-2 text-danger" style="visibility: hidden;">cSegmentation</strong>
+
+                    <!-- ###################---------------------###################### -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h6 >**Upload your Bank-statement here file here</h6>
+                        <div class="as">
+                            <input type="file" name="file" placeholder="uplaod your file here" required="required"
+                                multiple accept=".pdf">
+                            <input type="submit" value='upload' name="upload">
+                        </div>
+                    </form>
+
+                    <hr>
+                </div>
+
+
+                <div class="upload">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h5>send your file </h5>
+                        <ul>
+                            <li>
+                                <div class="form-group">
+                                    <input type="email" name="reciever_email" class="form-control custom-form"
+                                        placeholder="enter reciever email id" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <select required name='ofile'>
+                                    {% for i in files %}
+                                    {% if i.files %}
+                                    <option required value={{i.files}}>{{i.files}}</option>>
+                                    {% endif %}
+                                    {% endfor%}
+                                </select>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <input style="size: 20px;" type="submit" value='send' name="send">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </form>
+                </div>
+
+                <!-- <div id='main'>
+                        <div id='first'>
+                            <table>
+            
+                                <th>Recieved files</th>
+                                <th>Recieved From</th>
+            
+                                {% for i in person %}
+                                <tr>
+                                    {% if i.recieved_from != key.email and i.recieved_from != '' %}
+                                    <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                                    <td>{{i.recieved_from}} </td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+            
+                            </table>
+                        </div>
+            
+                        <div id="second">
+                            <table>
+            
+                                <th>My Files</th>
+            
+                                {% for i in files %}
+                                <tr>
+                                    <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                                </tr>
+                                {% endfor %}
+            
+                            </table>
+                        </div>
+                    </div> -->
+
+                <div class="row">
+                    <div class="col1">
+                        <table>
+
+                            <th>My Files</th>
+
+                            {% for i in files %}
+                            <tr>
+                                <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                    <div class="col2">
+                        <table>
+
+                            <th>Recieved files</th>
+                            <th>Recieved From</th>
+
+                            {% for i in person %}
+                            <tr>
+                                {% if i.recieved_from != key.email and i.recieved_from != '' %}
+                                <td><a href=http://127.0.0.1:8000/media/{{i.files}}>{{i.files}}</a></td>
+                                <td>{{i.recieved_from}} </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                </div>
+            <!-- </div> -->
+            <!-- </div> -->
+                <!-- #####################-------------------####################### -->
+
+
+
+
+
+                <!-- <p class="card-text mb-auto">Customer segmentation is an essential tool in customer relationship management, enabling businesses to market effectively to their customers.Segmentation also allows businesses to channel their resources appropriately.</p>
+                        <a href="#" class="stretched-link">Continue reading</a> -->
+            <!-- <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="200" height="250" src="{% static 'images/Thumbnail3.jpg' %}" alt="">
+                    </div> -->
+        <!-- </div> -->
+    </div>
+    <!-- <div class="col-md-6">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-success">cSegmentation</strong>
+                        <h3 class="mb-0">Benefits of Segmentation</h3>
+                        <p class="mb-auto">Analysing customer demographics and psychographics gives layers of insights which help anticipate customers’ needs and plan new products and services.</p>
+                        <a href="#" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="200" height="250" src="{% static 'images/Thumbnail4.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div> -->
+    </div>
+    </div>
+
+    <!--Footer of blog-->
+
+    <footer class="blog-footer" style="text-align:center;background-color: black; padding: 20px;">
+
+        <p>
+            <a style="color: white;" href="#">Back to top</a>
+        </p>
+    </footer>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

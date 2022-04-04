@@ -1,0 +1,151 @@
+<!--Starter Template-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>cSegmentation - Heaven for Programmers</title>
+</head>
+
+<body>
+
+    <!--Navbar which we select from the components in Bootstrap-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">cSegmentation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    {% if key %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'DASHBOARD2' %}">Dashboard</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Topics
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Technology</a></li>
+                            <li><a class="dropdown-item" href="#">Web Development</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Support</a></li>
+                            <li><a class="dropdown-item" href="#">Write for us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                {% if key %}
+                    <div class="top">
+                        <div class="logout">
+                            <a href="{% url 'LOGOUT2' %}">
+                                Logout
+                            </a>
+                        </div>
+                        <div class="title">welcome {{key.name}}</div>
+                    </div>
+                {% else %}    
+            </form>
+                <div class="top">
+                    <div class="logout">
+                        <a style="text-decoration: none; color: white;" href="{% url 'login' %}">
+                            login
+                        </a>
+                    </div>
+                    <div class="logout">
+                        <a  style="text-decoration: none; color: white;" href="{% url 'Signup' %}">
+                            signup
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+    
+    <form class="contact-form me-lg-5 pe-lg-3" role="form" method="POST">
+        {% csrf_token %}
+        <div class="form-floating">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Full name"
+                required>
+            <label for="name">Full name</label>
+        </div>
+
+        <div class="form-floating my-4">
+            <input type="email" name="email" id="email" class="form-control"
+                placeholder="Email address" required>
+            <label for="email">Email address</label>
+        </div>
+
+        <div class="form-floating my-4">
+            <input type="subject" name="subject" id="subject" class="form-control"
+                placeholder="Subject" required>
+            <label for="subject">Subject</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <textarea id="message" name="message" class="form-control"
+                placeholder="Leave a comment here" required style="height: 160px"></textarea>
+            <label for="message">Tell us about the project</label>
+        </div>
+
+        <div class="col-lg-5 col-6">
+            <!-- <button type="submit" class="form-control">Send</button> -->
+            <!-- <input type="submit" class="form-control" value="Send"> -->
+            <input type="submit" class="btn btn-outline-info" value="Send">
+        </div>
+    </form>
+</div>
+    <!--Footer-->
+    <footer class="container">
+        <p>© 2017–2021 cSegmentation, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </footer>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+    {% if msg %}
+    <script>alert('{{msg}}')</script>
+    {% endif %}
+</body>
+
+</html>

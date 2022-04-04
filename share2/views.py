@@ -11,61 +11,61 @@ import requests
 
 # Create your views here.
 
-def SignupView(self):
-    if self.POST:
-        Name = self.POST['name']
-        print(Name)
-        Email = self.POST['email']
-        print(Email)
-        Number = self.POST['number']
-        print(Number)
-        Password = self.POST['password']
-        print(Password)
-        ConfirmPassword = self.POST['confirmPassword']
-        print(ConfirmPassword)
+# def SignupView(self):
+#     if self.POST:
+#         Name = self.POST['name']
+#         print(Name)
+#         Email = self.POST['email']
+#         print(Email)
+#         Number = self.POST['number']
+#         print(Number)
+#         Password = self.POST['password']
+#         print(Password)
+#         ConfirmPassword = self.POST['confirmPassword']
+#         print(ConfirmPassword)
 
-        try:
-            data=UserDetails2.objects.filter(email=Email)
-            if data:
-                msg = 'Email already taken'
-                return render(self , 'signup.html',{'msg':msg})
+#         try:
+#             data=UserDetails2.objects.filter(email=Email)
+#             if data:
+#                 msg = 'Email already taken'
+#                 return render(self , 'signup.html',{'msg':msg})
 
-            elif ConfirmPassword == Password:
-                v = UserDetails2()
-                v.name = Name
-                v.email = Email
-                v.number = Number
-                v.password = Password
-                v.save()
-                return redirect('LOGIN2')
+#             elif ConfirmPassword == Password:
+#                 v = UserDetails2()
+#                 v.name = Name
+#                 v.email = Email
+#                 v.number = Number
+#                 v.password = Password
+#                 v.save()
+#                 return redirect('LOGIN2')
 
-            else:
-                msg = 'Enter Same Password'
-                return render(self , 'signup.html',{'msg':msg}) 
+#             else:
+#                 msg = 'Enter Same Password'
+#                 return render(self , 'signup.html',{'msg':msg}) 
                 
-        finally:
-            messages.success(self, 'Signup Successfully Done...')
+#         finally:
+#             messages.success(self, 'Signup Successfully Done...')
 
-    return render(self,'signup.html')
+#     return render(self,'signup.html')
 # ca login
-def userLogin(request):
-    if request.POST:
-        em = request.POST.get('email')
-        pass1 = request.POST.get('password')
-        try:
-            print("Inside first try block", em)
-            check = UserDetails2.objects.get(email = em)      
-            print("Email is ",em)
-            if check.password == pass1:
-                request.session['email'] = check.email
-                print(f'CA {check.name} Successfully logged in')
-                return redirect('DASHBOARD2')
-            else:
-                return HttpResponse('Invalid Password')
-        except:
-            print("Inside first except block")
-            return HttpResponse('Invalid Email ID')
-    return render(request,'login.html')
+# def userLogin(request):
+#     if request.POST:
+#         em = request.POST.get('email')
+#         pass1 = request.POST.get('password')
+#         try:
+#             print("Inside first try block", em)
+#             check = UserDetails2.objects.get(email = em)      
+#             print("Email is ",em)
+#             if check.password == pass1:
+#                 request.session['email'] = check.email
+#                 print(f'CA {check.name} Successfully logged in')
+#                 return redirect('DASHBOARD2')
+#             else:
+#                 return HttpResponse('Invalid Password')
+#         except:
+#             print("Inside first except block")
+#             return HttpResponse('Invalid Email ID')
+#     return render(request,'login.html')
 import os
 #ca dashboard
 def dashboard(request):
@@ -99,7 +99,7 @@ def dashboard(request):
                     f.save()      
                     print('inside for1')
                 # return render(request, 'dashboard.html', {'key':nameMsg,'files':fi})    
-                return(HttpResponseRedirect('http://127.0.0.1:8000/share2/dash/'))
+                return(HttpResponseRedirect('http://127.0.0.1:8000/dash/'))
 
             if request.POST.get('send')=='send':
                 email = request.POST['reciever_email']
@@ -119,19 +119,120 @@ def dashboard(request):
                     f.files=rfile
                     f.save()
                     
-                return(HttpResponseRedirect('http://127.0.0.1:8000/share2/dash/'))   
+                return(HttpResponseRedirect('http://127.0.0.1:8000/dash/'))   
 
             person=FileList.objects.filter(uploaded_by=nameMsg.email)
             print(person)
-            return render(request, 'dashboard.html', {'key':nameMsg,'files':fi,'person':person})
+            return render(request, 'mydashboard.html', {'key':nameMsg,'files':fi,'person':person})
         # except:
         #     return redirect('LOGIN')
         
-    # return redirect('LOGIN')
+    return redirect('login')
 
 def userLogOut(request):
     del request.session['email']
     print('User logged out')
-    return redirect('LOGIN2')
+    return redirect('login')
 
 
+
+
+
+##########################---------------##########
+
+
+def contact (request): 
+    print('Contact')
+    msg = ''
+    if request.method == 'POST':
+        db = ContactForm(name = request.POST.get('name'), email = request.POST.get('email'), subject = request.POST.get('subject'), message = request.POST.get('message'))
+        db.save()
+        msg = "Message Sent Successfully"
+    return render(request, 'contact.html', {'msg': msg})
+
+
+
+
+def Login(request):
+    msg=''
+    if request.POST:
+        em = request.POST.get('email')
+        pass1 = request.POST.get('password')
+        try:
+            print("Inside first try block", em)
+            check = UserDetails2.objects.get(email = em)      
+            print("Email is ",em)
+            if check.password == pass1:
+                request.session['email'] = check.email
+                print(f'CA {check.name} Successfully logged in')
+                return redirect('DASHBOARD2')
+            else:
+                msg='enter correct password'
+        except:
+            print("Inside first except block")
+            msg='Invalid email'
+    return render(request,'login.html',{'msg':msg})
+    # return render(request,'login.html')
+
+def SignUp(self):
+    print("signup function called")
+    if self.POST:
+        Name = self.POST['name']
+        print(Name)
+        Email = self.POST['email']
+        print(Email)
+        Number = self.POST['number']
+        print(Number)
+        Password = self.POST['password']
+        print(Password)
+        ConfirmPassword = self.POST['confirmPassword']
+        print(ConfirmPassword)
+
+        try:
+            data=UserDetails2.objects.filter(email=Email)
+            if data:
+                msg = 'Email already taken'
+                return render(self , 'signup.html',{'msg':msg})
+
+            elif ConfirmPassword == Password:
+                v = UserDetails2()
+                v.name = Name
+                v.email = Email
+                v.number = Number
+                v.password = Password
+                v.save()
+                return redirect('login')
+
+            else:
+                msg = 'Enter Same Password'
+                return render(self , 'signup.html',{'msg':msg}) 
+                
+        finally:
+            messages.success(self, 'Signup Successfully Done...')
+
+    return render(self,'signup.html')
+    # return render(request,'signup.html')
+
+def index(request):
+    if 'email' in request.session:
+        nameMsg = UserDetails2.objects.get(email = request.session['email'])
+        return render(request,'index.html',{'key':nameMsg})
+    return render(request,'index.html')
+
+def about(request):
+    if 'email' in request.session:
+        nameMsg = UserDetails2.objects.get(email = request.session['email'])
+        return render(request,'About.html',{'key':nameMsg})
+    return render(request,'About.html')    
+
+def upload(request):
+    return render(request,'upload.html')
+
+def loading(request):
+    return render(request,'loading.html')
+
+def contactview(request):
+    if 'email' in request.session:
+        nameMsg = UserDetails2.objects.get(email = request.session['email'])
+        return render(request,'Contact.html',{'key':nameMsg})
+    return render(request,'Contact.html')
