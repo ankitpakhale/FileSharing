@@ -19,7 +19,7 @@ urlpatterns = [
             path('signup/', views.SignUp,name='Signup'),
             
             path('loading/',views.loading,name='loading'),
-            path('contact/', views.contact, name='CONTACT'), 
+            path('contact/', views.contact, name='contact'), 
             path('about/',views.about,name='about')
                     
           
